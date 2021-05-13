@@ -145,6 +145,9 @@ class Instructor extends Lambdasian {
   grade(student, subject) {
     return `${student.name} receives a perfect score on ${subject}`;
   }
+  gpa(student) {
+    student.grade = student.grade + Math.random() * 100 - Math.random() * 100;
+  }
 }
 /*
     TASK 5
@@ -167,6 +170,7 @@ class Student extends Lambdasian {
     this.previousBackground = attr.previousBackground;
     this.className = attr.className;
     this.favSubjects = attr.favSubjects;
+    this.grade = attr.grade;
   }
   listSubjects() {
     return `Loving ${this.favSubjects}`;
@@ -177,7 +181,41 @@ class Student extends Lambdasian {
   sprintChallenge(subject) {
     return `${this.name} has begun spring challenge on ${subject}`;
   }
+  graduate() {
+    if (this.grade >= 70) {
+      return `${this.name} is ready to graduate`;
+    } else {
+      `${this.name} needs to get their grades up to graduate`;
+    }
+  }
 }
+
+const shane = new Student({
+  name: "Shane",
+  age: 33,
+  location: "Massachusetts",
+  previousBackground: "construction",
+  className: "PT30",
+  favSubjects: "Javascript",
+  grade: 95,
+});
+
+const keiran = new Instructor({
+  name: "Keiran",
+  age: 30,
+  location: "Florida",
+  specialty: "Web Development",
+  favLanguage: "Javascript",
+  catchPhrase: "Please stop asking me what is happening to part time lol",
+});
+
+console.log("keiran", keiran);
+console.log("shane", shane);
+
+keiran.gpa(shane);
+
+console.log(shane.grade);
+console.log(shane.graduate());
 
 /*
     TASK 6
